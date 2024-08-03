@@ -1,1 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seating Assignment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .form-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .table-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .table {
+            display: grid;
+            grid-template-columns: repeat(6, 50px);
+            grid-template-rows: repeat(6, 50px);
+            gap: 1px;
+            background-color: #ddd;
+            position: relative;
+        }
+        .table div {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border: 1px solid #bbb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #333;
+        }
+        .label {
+            position: absolute;
+            background-color: white;
+            padding: 5px;
+        }
+        .label-horizontal {
+            top: -30px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+        }
+        .label-vertical {
+            top: 0;
+            right: -40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            writing-mode: vertical-rl;
+            text-align: center;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 600px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Initially hidden */
+        }
+        .card {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #bbb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            transition: background-color 0.3s;
+        }
+        .card.hidden {
+            background-color: #ddd;
+        }
+        .card.show {
+            background-color: #fff;
+        }
+        .form-container input,
+        .form-container button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container" id="formContainer">
+            <input type="number" id="totalStudents" min="1" placeholder="Total number of students">
+            <input type="text" id="studentName" placeholder="Enter student name">
+            <button onclick="assignSeat()">Assign Seat</button>
+        </div>
 
+        <div class="table-container">
+            <div class="table">
+                <!-- Cells will be dynamically created -->
+            </div>
+            <div class="label label-horizontal">칠판</div>
+            <div class="label label-vertical">출입구(문)</div>
+        </div>
+
+        <div class="card-container" id="cardContainer">
+            <!-- Cards will be dynamically created -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
